@@ -19,15 +19,15 @@ module.exports = {
 
   contentFor: function(type) {
     if (type === 'head') {
-      return '<link rel="stylesheet" href="assets/icons.css">';
+      return '<link rel="stylesheet" href="assets/fonts/fontcustom.css">';
     }
   },
 
   // Build font files
   // TODO this isn't ideal - icons.css should be included in my SCSS/LESS build
   treeForPublic: function(tree) {
-    var iconDestPath = this.iconDest ?
-      path.join('assets', this.iconDest) :
+    var iconDestPath = this.iconOutput ?
+      path.join('assets', this.iconOutput) :
       'assets';
     var svgSources = this.svgSources || path.join('app', 'styles', 'icons');
     if (typeof svgSources === 'string') {
