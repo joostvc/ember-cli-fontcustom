@@ -9,8 +9,10 @@ module.exports = {
     if (app.options.icons) {
       this.svgSources = app.options.icons.svgSources;
       this.iconCSSTemplate = app.options.icons.cssTemplate;
+      this.fontName = app.options.icons.fontName;
       this.iconOutput = app.options.icons.dest;
     }
+
     // Store appRoot so fontcustom can find the icon sources
     this.appRoot = app.project.root;
 
@@ -19,7 +21,7 @@ module.exports = {
 
   contentFor: function(type) {
     if (type === 'head') {
-      return '<link rel="stylesheet" href="assets/fonts/fontcustom.css">';
+      return '<link rel="stylesheet" href="assets/fonts/'+this.fontName+'.css">';
     }
   },
 
@@ -38,6 +40,7 @@ module.exports = {
       path.join(__dirname, 'addon', 'icons.css');
 
     var fontTree = fontcustom(svgSources, {
+      font_name: this.fontName,
       output: iconDestPath,
       templates: [ templatePath ]
     });
